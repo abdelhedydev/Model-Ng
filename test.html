@@ -27,6 +27,7 @@
         wb.Sheets["Test Sheet"] = ws;
 
         var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
+        
         function s2ab(s) {
 
                 var buf = new ArrayBuffer(s.length);
@@ -35,6 +36,7 @@
                 return buf;
 
         }
+
         $("#button-a").click(function(){
                 saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'test.xlsx');
         });

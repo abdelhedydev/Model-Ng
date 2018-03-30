@@ -1,11 +1,5 @@
 
-var tab =[
-     [1,2,3],
-     [10,20,30],
-     [100,200,300],
-     [1000,2000,3000],
-     [10000,20000,30000]
-];
+
 function list(tab) {
           console.log(tab);
           console.log("length Line: "+tab.length);
@@ -40,8 +34,12 @@ function Min(tab) {
 }
 //Coorelation function
 function Coorelation(x) {
-console.log(1/x);
-return 1/x ;
+if(x == 0 ){
+  return 0
+}
+else {
+  return 1/x ;
+}
 }
 
 //With Fixed Column
@@ -97,7 +95,9 @@ function Min_fixed_line(tab,i) {
 // In Matrix
 //Standardisation
 function Standardisation(tab){
-  var tab2 = tab ;
+  console.log("Func : Your Array");
+  console.log(tab);
+  var tab2 = Array.from(tab);
   for (var i = 0; i < tab.length; i++) {
        for (var j = 0; j < tab[i].length; j++) {
             tab2[i][j] = (tab[i][j] - Min_fixed_column(tab,j)) / (Max_fixed_column(tab,j) - Min_fixed_column(tab,j));
@@ -106,26 +106,56 @@ function Standardisation(tab){
   return tab2 ;
 }
 
+/// Enlevement de l'énté du Tableau
+function enlev(tab){
+  tab.shift(); // delete first line
+    for (var i = 0; i < tab.length; i++) { // delete first columns
+         tab[i].shift();
+          }
+}
+//*****NEW :
 //AVG Partiels
 function Matrix_avg(tab){
   //hssine coorect this :p
-  var tab2 = tab ;
-  for (var i = 0; i < tab.length; i++) {
-       for (var j = 0; j < tab[i].length; j++) {
-            if (i == 0)
-            {
-              tab2[i][j] = tab[i][j];
-            }
-            else {
-              //boucle
-              tab2[i][j] = (tab[i-1][j] + tab[i][j])/i ;
+  //done and fixed hihiihihihi 3:p
+  var tab2 = [];
+
+  //console.log(tab);
+  for (var i = 1; i < tab.length; i++) {
+    var arrayOfThisRow = [];
+       for (var j = 1; j < tab[i].length; j++) {
+
+            //console.log(i+"---i");
+            //console.log(j+"---j");
+            //ForDebug:console.log("tab["+i+"]"+"["+j+"]= "+tab[i][j]);
+
+           if(isNumeric(tab[i][j])){
+
+              if (j == 1)
+              {
+                //arrayOfThisRow.push(Number(tab[i][j]));
+                arrayOfThisRow.push(tab[i][j]);
+              }else {
+                //boucle
+                var s = 0;
+                for(x = 1 ; x < j+1; x++){
+                  s = s + Number(tab[i][x]);
+                }
+                arrayOfThisRow.push((s)/j);
+              }
+
+            }else{
+                //arrayOfThisRow.push(tab[i][j]);
+                alert("is not numeric")
             }
        }
+
+       tab2.push(arrayOfThisRow);
   }
-  console.log(tab2);
   return tab2 ;
 }
 
+//*****NEW :
 //Matrix Score
 function score_matrix(tab){
   var score = [];
@@ -134,6 +164,30 @@ function score_matrix(tab){
             score[i] = Max_fixed_line(tab,i);
        }
   }
+  //i passed by here i think it needs SORT at the end
+  score.sort();
   console.log(score);
   return score ;
+}
+//*****NEW :
+//to check if n is numeric
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+//Ng Modeeeeel
+function Ng(xtab){
+  //Get new table data after coorelation to an array[][]
+      var copy=[];
+  console.log("Array");
+  console.log(xtab);
+
+  copy = Array.from(xtab);
+  console.log("Array Copied");
+  console.log(copy);
+
+  enlev(xtab);
+
+Standardisation(xtab);
+
 }
