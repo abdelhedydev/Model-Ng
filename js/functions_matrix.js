@@ -164,13 +164,15 @@ function display_result(final){
 
 //Sorting the final Array
 function sorting(mytab){
-  mytab.sort();
+  mytab.sort(function(a,b){
+    return b[1] - a[1];
+  });
 return mytab;
 }
 
 //Ng Modeeeeel
 function Ng(xtab){
-  var final = fussion(xtab,score_matrix(Matrix_avg(Standardisation(enlev(xtab)))));
+  var final = sorting(fussion(xtab,score_matrix(Matrix_avg(Standardisation(enlev(xtab))))));
   display_result(final);
   hideelement();
 }

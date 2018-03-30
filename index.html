@@ -40,6 +40,14 @@
          </div>
 
      </div>
+     <br>
+     <div class="row" id="image">
+          <p>Please, Follow this Pattern :</p>
+          <br>
+          <div class="text-center">
+          <img src="Pattern.png" class="img-fluid" alt="Responsive image">
+          </div>
+     </div>
 <br>
      <div class="row">
                  <div class="col-12">
@@ -63,6 +71,7 @@
                 //*****NEW : add check box to every top of columns
                 $('#myfile').change(function(e){
                          $('#btn').css('opacity','1');
+                         $('#image').css('display','none');
                          $('#submit').css('opacity','1');
                          var reader = new FileReader();
                          reader.readAsArrayBuffer(e.target.files[0]);
