@@ -156,6 +156,16 @@ function display_result(final){
     //Adding Excel Button
     var z = document.getElementById('button-a');
     z.style='display:block';
+
+    //Adding Home Button
+    var y = document.getElementById('button-home');
+    y.style='display:block';
+}
+
+//Sorting the final Array
+function sorting(mytab){
+  mytab.sort();
+return mytab;
 }
 
 //Ng Modeeeeel
