@@ -78,12 +78,12 @@
       $('#btn').css('opacity', '1');
       $('#image').css('display', 'none');
       $('#submit').css('opacity', '1');
-      var reader = new FileReader();
+      let reader = new FileReader();
       reader.readAsArrayBuffer(e.target.files[0]);
 
       reader.onload = function (e) {
-        var data = new Uint8Array(reader.result);
-        var wb = XLSX.read(data, { type: 'array' });
+        let data = new Uint8Array(reader.result);
+        let wb = XLSX.read(data, { type: 'array' });
 
         //convert Excel File into HTML String
         htmlstr = XLSX.write(wb, { type: "binary", bookType: "html" });
@@ -94,7 +94,7 @@
         //console.log(XLSX.utils.sheet_to_json(wb,{raw:true}));
         $('#test tr:first').children('td').each(function (k) {
           if (k > 0) {
-            var chk = "<br></br><input type='checkbox' id='chk_" + k + "' />";
+            let chk = "<br></br><input type='checkbox' id='chk_" + k + "' />";
             $(this).append(chk);
           }
         });
@@ -102,18 +102,16 @@
       }
     });
 
-    //*****NEW :
     //Coorelation function : 1/x for every checked column
-
     function Coorelation_func() {
 
       $('#test tr:first').children('td').each(function (k) {
         if (k > 0) {
-          var MyRows = $('#test').find('tbody').find('tr');
+          let MyRows = $('#test').find('tbody').find('tr');
           //Coorelation
-          for (var i = 1; i < MyRows.length; i++) {
+          for (let i = 1; i < MyRows.length; i++) {
             //Get Row at (k) position
-            var v = $(MyRows[i]).find('td:eq(' + k + ')').html();
+            let v = $(MyRows[i]).find('td:eq(' + k + ')').html();
 
             if ($('#chk_' + k).is(":checked")) {
               if (v != 0) {
@@ -126,15 +124,13 @@
       });
     };
 
-    //*****NEW :
     function s2ab(s) {
-      var buf = new ArrayBuffer(s.length);
-      var view = new Uint8Array(buf);
-      for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+      let buf = new ArrayBuffer(s.length);
+      let view = new Uint8Array(buf);
+      for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
       return buf;
     }
 
-    //*****NEW :
     //Button CLICK function
     $('#btn').click(function () {
       //Coorelation function
@@ -145,13 +141,13 @@
     $('#submit').click(function () {
 
       //Get new table data after coorelation to an array[][]
-      var myTableArray = [];
+      let myTableArray = [];
 
 
       $('#test').find('tbody').find('tr').each(function () {
 
-        var tableData = $(this).find('td');
-        var arrayOfThisRow = [];
+        let tableData = $(this).find('td');
+        let arrayOfThisRow = [];
 
         if (tableData.length > 0) {
 

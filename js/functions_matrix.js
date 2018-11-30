@@ -11,7 +11,6 @@ function Max_fixed_column(tab, j) {
       max = tab[i][j]
     }
   }
-  //console.log(max);
   return max;
 }
 //Get the Minimum
@@ -39,7 +38,7 @@ function Standardisation(tab) {
   return stand;
 }
 
-//Heading Splice
+//remove array head
 function enlev(etab) {
   let qntab = [];
   for (let i = 0; i < etab.length - 1; i++) {
@@ -54,7 +53,8 @@ function enlev(etab) {
 
 //to check if n is numeric
 function isNumeric(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
+  //return !isNaN(parseFloat(n)) && isFinite(n);
+  return _.isNumber(n)
 }
 
 //AVG Partiels
@@ -117,7 +117,7 @@ function fussion(tab, tab2) {
   return rows;
 }
 //Hidding HTML elements
-function hideelement() {
+function hideElemnts() {
   //initial Array
   let x = document.getElementById('test');
   x.style = 'display:none';
@@ -167,7 +167,7 @@ function sorting(mytab) {
 function Ng(xtab) {
   let final = sorting(fussion(xtab, score_matrix(Matrix_avg(Standardisation(enlev(xtab))))));
   display_result(final);
-  hideelement();
+  hideElemnts();
 }
 function excel() {
   //Excel file
